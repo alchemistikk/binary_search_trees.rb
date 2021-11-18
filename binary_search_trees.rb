@@ -14,3 +14,11 @@ class Node
     @data <=> other.data
   end
 end
+
+class Tree
+  def initialize(arr)
+    @arr = arr
+  end
+
+  @root = build_tree
+end
