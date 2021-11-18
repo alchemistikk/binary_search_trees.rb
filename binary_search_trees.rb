@@ -118,7 +118,7 @@ class Tree
     preorder(root.right)
   end
 
-  def postorder(root = @root, &block)
+  def postorder(root = @root)
     return if root.nil?
 
     postorder(root.left)
