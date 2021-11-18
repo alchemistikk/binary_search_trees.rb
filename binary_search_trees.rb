@@ -78,11 +78,23 @@ class Tree
     current
   end
 
-  # Write a #find method which accepts a value and returns the node with the given value.
   def find(value, root = @root)
     return root if root == value || root.nil?
     return find(value, root.left) if value < root
     return find(value, root.right) if value > root
+  end
+
+  def level_order
+    i = 0
+    queue = [@root]
+    arr = []
+    while queue[i]
+      arr << queue[i]
+      queue << queue[i].left if queue[i].left
+      queue << queue[i].right if queue[i].right
+      i += 1
+    end
+    arr.each { |node| yield node }
   end
 end
 
@@ -92,3 +104,4 @@ my_tree.insert(Node.new(12))
 my_tree.delete(Node.new(6345))
 my_tree.pretty_print
 p my_tree.find(Node.new(7))
+my_tree.level_order { |elem| puts elem.data }
