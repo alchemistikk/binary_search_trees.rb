@@ -1,6 +1,3 @@
-# Do not use duplicate values
-arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
-
 class Node
   include Comparable
   attr_accessor :data, :left, :right
@@ -23,6 +20,12 @@ class Tree
     @root = build_tree(arr)
   end
 
+  def pretty_print(node = @root, prefix = '', is_left = true)
+    pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
+    puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
+    pretty_print(node.left, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left
+  end
+
   def build_tree(raw)
     return if raw.empty?
 
@@ -37,6 +40,6 @@ class Tree
   end
 end
 
+arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
 my_tree = Tree.new(arr)
-puts my_tree.build_tree(arr)
-
+my_tree.pretty_print
