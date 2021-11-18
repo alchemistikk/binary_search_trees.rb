@@ -77,6 +77,13 @@ class Tree
     end
     current
   end
+
+  # Write a #find method which accepts a value and returns the node with the given value.
+  def find(value, root = @root)
+    return root if root == value || root.nil?
+    return find(value, root.left) if value < root
+    return find(value, root.right) if value > root
+  end
 end
 
 arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
@@ -84,3 +91,4 @@ my_tree = Tree.new(arr)
 my_tree.insert(Node.new(12))
 my_tree.delete(Node.new(6345))
 my_tree.pretty_print
+p my_tree.find(Node.new(7))
