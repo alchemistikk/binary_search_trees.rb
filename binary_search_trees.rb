@@ -85,15 +85,19 @@ class Tree
   end
 
   def level_order
+
     i = 0
     queue = [@root]
     arr = []
+    values = []
     while queue[i]
       arr << queue[i]
+      values << queue[i].data
       queue << queue[i].left if queue[i].left
       queue << queue[i].right if queue[i].right
       i += 1
     end
+    return values unless block_given?
     arr.each { |node| yield node }
   end
 end
@@ -105,3 +109,4 @@ my_tree.delete(Node.new(6345))
 my_tree.pretty_print
 p my_tree.find(Node.new(7))
 my_tree.level_order { |elem| puts elem.data }
+p my_tree.level_order
