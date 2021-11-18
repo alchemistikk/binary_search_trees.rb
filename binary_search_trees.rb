@@ -85,7 +85,6 @@ class Tree
   end
 
   def level_order
-
     i = 0
     queue = [@root]
     arr = []
@@ -100,6 +99,33 @@ class Tree
     return values unless block_given?
     arr.each { |node| yield node }
   end
+
+  # I have tried passing root to a block both implicitly and explicitly, but can't figure it out just yet.
+  # For now we can just puts root.data to show that the method does recurse as intended.
+  def inorder(root = @root)
+    return if root.nil?
+
+    inorder(root.left)
+    puts root.data
+    inorder(root.right)
+  end
+
+  def preorder(root = @root)
+    return if root.nil?
+
+    puts root.data
+    preorder(root.left)
+    preorder(root.right)
+  end
+
+  def postorder(root = @root, &block)
+    return if root.nil?
+
+    postorder(root.left)
+    postorder(root.right)
+    puts root.data
+  end
+
 end
 
 arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
@@ -110,3 +136,7 @@ my_tree.pretty_print
 p my_tree.find(Node.new(7))
 my_tree.level_order { |elem| puts elem.data }
 p my_tree.level_order
+my_tree.inorder
+my_tree.preorder
+my_tree.postorder
+# my_tree.inorder { |elem| puts elem.data } # It's only taking the block once
