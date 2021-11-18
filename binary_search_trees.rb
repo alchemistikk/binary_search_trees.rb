@@ -38,8 +38,21 @@ class Tree
     root.right = build_tree(arr[middle + 1..-1])
     root 
   end
+
+  def insert(value, root = @root)
+    return value if root.nil?
+  
+    if value < root
+      root.left = insert(value, root.left)
+    else
+      root.right = insert(value, root.right)
+    end
+
+    root
+  end
 end
 
 arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
 my_tree = Tree.new(arr)
+my_tree.insert(Node.new(12))
 my_tree.pretty_print
