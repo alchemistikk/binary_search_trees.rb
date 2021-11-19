@@ -133,6 +133,10 @@ class Tree
 
     [height(node.left), height(node.right)].max + 1 # Find height for each subtree
   end
+
+  def depth(node)
+    height(@root) - height(node)
+  end
 end
 
 arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
@@ -148,4 +152,5 @@ my_tree.preorder
 my_tree.postorder
 # my_tree.inorder { |elem| puts elem.data } # It's only taking the block once
 p my_tree.height
+p my_tree.depth(Node.new(23))
 p my_tree.find(Node.new(8))
