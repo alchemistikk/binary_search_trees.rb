@@ -126,6 +126,13 @@ class Tree
     puts root.data
   end
 
+  def height(node = @root)
+    node = find(node) unless node.nil? || node == @root
+
+    return -1 if node.nil?
+
+    [height(node.left), height(node.right)].max + 1 # Find height for each subtree
+  end
 end
 
 arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
@@ -140,3 +147,5 @@ my_tree.inorder
 my_tree.preorder
 my_tree.postorder
 # my_tree.inorder { |elem| puts elem.data } # It's only taking the block once
+p my_tree.height
+p my_tree.find(Node.new(8))
