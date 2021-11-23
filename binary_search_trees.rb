@@ -137,6 +137,12 @@ class Tree
   def depth(node)
     height(@root) - height(node)
   end
+
+  def balanced?(left = height(@root.left), right = height(@root.right))
+    return true if left - right <= 1
+
+    false
+  end
 end
 
 arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
@@ -154,3 +160,4 @@ my_tree.postorder
 p my_tree.height
 p my_tree.depth(Node.new(23))
 p my_tree.find(Node.new(8))
+p my_tree.balanced?
