@@ -139,14 +139,12 @@ class Tree
   end
 
   def balanced?(left = height(@root.left), right = height(@root.right))
-    p left
-    p right
     return true if left - right <= 1 && right - left <= 1
 
     false
   end
 
   def rebalance
-    build_tree(level_order)
+    @root = build_tree(level_order)
   end
 end
