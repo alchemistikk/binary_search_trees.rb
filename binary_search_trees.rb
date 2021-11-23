@@ -139,7 +139,9 @@ class Tree
   end
 
   def balanced?(left = height(@root.left), right = height(@root.right))
-    return true if left - right <= 1
+    p left
+    p right
+    return true if left - right <= 1 && right - left <= 1
 
     false
   end
