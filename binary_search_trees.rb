@@ -143,6 +143,10 @@ class Tree
 
     false
   end
+
+  def rebalance
+    build_tree(level_order)
+  end
 end
 
 arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
@@ -161,3 +165,4 @@ p my_tree.height
 p my_tree.depth(Node.new(23))
 p my_tree.find(Node.new(8))
 p my_tree.balanced?
+p my_tree.rebalance
