@@ -148,21 +148,3 @@ class Tree
     build_tree(level_order)
   end
 end
-
-arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
-my_tree = Tree.new(arr)
-my_tree.insert(Node.new(12))
-my_tree.delete(Node.new(6345))
-my_tree.pretty_print
-p my_tree.find(Node.new(7))
-my_tree.level_order { |elem| puts elem.data }
-p my_tree.level_order
-my_tree.inorder
-my_tree.preorder
-my_tree.postorder
-# my_tree.inorder { |elem| puts elem.data } # It's only taking the block once
-p my_tree.height
-p my_tree.depth(Node.new(23))
-p my_tree.find(Node.new(8))
-p my_tree.balanced?
-p my_tree.rebalance
